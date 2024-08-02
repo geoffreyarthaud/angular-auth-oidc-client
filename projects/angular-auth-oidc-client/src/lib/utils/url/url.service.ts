@@ -496,7 +496,7 @@ export class UrlService {
     params = params.append('nonce', nonce);
     params = params.append('state', state);
 
-    if (this.flowHelper.isCurrentFlowCodeFlow(configuration)) {
+    if (!configuration.disablePkce && this.flowHelper.isCurrentFlowCodeFlow(configuration)) {
       params = params.append('code_challenge', codeChallenge);
       params = params.append('code_challenge_method', 'S256');
     }
